@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching Portfolio - Jisoo Lee</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --teal: #2A9D8F;
+            --yellow: #F4D35E;
+            --green: #52B788;
+            --red: #FF6B6B;
+            --coral: #FF8566;
+            --cyan: #4ECDC4;
+            --dark-text: #2C3E50;
+            --light-gray: #F8F9FA;
+            --border-gray: #E0E0E0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: #ffffff;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: white;
+            border-bottom: 5px solid var(--teal);
+            color: var(--dark-text);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .header-title:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .header-title h1 {
+            font-size: 1.8rem;
+            color: var(--teal);
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: var(--teal);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background-color: var(--light-gray);
+            border: 2px solid var(--teal);
+        }
+
+        .header-nav a:hover {
+            background-color: var(--teal);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(42, 157, 143, 0.2);
+        }
+
+        nav {
+            display: none;
+        }
+
+        nav button {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--dark-text);
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav button:hover {
+            background-color: rgba(42, 157, 143, 0.1);
+            color: var(--teal);
+        }
+
+        nav button.active {
+            color: var(--teal);
+            border-bottom-color: var(--teal);
+            background-color: rgba(42, 157, 143, 0.15);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Landing Page Styles */
+        .landing-page {
+            text-align: center;
+        }
+
+        .landing-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .profile-photo {
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-photo img {
+            width: 300px;
+            height: 300px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(42, 157, 143, 0.15);
+            object-fit: cover;
+            border: 3px solid var(--teal);
+        }
+
+        .introduction {
+            text-align: left;
+        }
+
+        .introduction h2 {
+            color: var(--teal);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .introduction p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #6a6a6a;
+            margin-bottom: 1rem;
+        }
+
+        /* Philosophy and Goals */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            color: var(--dark-text);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 4px solid var(--teal);
+            font-weight: 700;
+        }
+
+        .section h3 {
+            color: var(--dark-text);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .philosophy-box {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-left: 5px solid var(--teal);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .goals-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .goal-card {
+            background: white;
+            border: none;
+            border-top: 4px solid var(--teal);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .goal-card:nth-child(1) { border-top-color: var(--teal); }
+        .goal-card:nth-child(2) { border-top-color: var(--cyan); }
+        .goal-card:nth-child(3) { border-top-color: var(--yellow); }
+        .goal-card:nth-child(4) { border-top-color: var(--green); }
+        .goal-card:nth-child(5) { border-top-color: var(--coral); }
+        .goal-card:nth-child(6) { border-top-color: var(--red); }
+
+        .goal-card:hover {
+            box-shadow: 0 4px 8px rgba(42, 157, 143, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .goal-card h4 {
+            color: var(--dark-text);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* Activity Cards */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .activity-card {
+            background: white;
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .activity-card:hover {
+            box-shadow: 0 6px 12px rgba(42, 157, 143, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .activity-gallery {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--teal) 100%);
+            overflow: hidden;
+        }
+
+        .gallery-container {
+            display: flex;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        .gallery-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .gallery-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            border: 2px solid white;
+            transition: background-color 0.3s ease;
+        }
+
+        .gallery-dot.active {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+            z-index: 5;
+        }
+
+        .gallery-nav:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .gallery-nav.prev {
+            left: 10px;
+        }
+
+        .gallery-nav.next {
+            right: 10px;
+        }
+
+        .activity-body {
+            padding: 1.8rem;
+            background: white;
+        }
+
+        .activity-body h4 {
+            color: var(--teal);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .activity-meta {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+            font-size: 0.9rem;
+            color: var(--dark-text);
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            background: var(--light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: var(--dark-text);
+            font-weight: 600;
+            border: 1px solid var(--border-gray);
+        }
+        
+
+        .activity-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            color: var(--dark-text);
+        }
+
+        .activity-body strong {
+            color: var(--teal);
+            font-weight: 700;
+        }
+
+        /* Professional Data */
+        .data-section {
+            background: var(--light-gray);
+            border: 2px solid var(--border-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .data-section h3 {
+            color: var(--teal);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .credentials-list {
+            list-style: none;
+        }
+
+        .credentials-list li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.05rem;
+            color: #6a6a6a;
+        }
+
+        .credentials-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--teal);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .music-section {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--teal);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .impact-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .impact-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--teal);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .impact-item:nth-child(1) { border-left-color: var(--teal); }
+        .impact-item:nth-child(2) { border-left-color: var(--green); }
+        .impact-item:nth-child(3) { border-left-color: var(--cyan); }
+
+        .impact-item:hover {
+            box-shadow: 0 4px 8px rgba(42, 157, 143, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .impact-item h4 {
+            color: var(--dark-text);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        /* Academic Work */
+        .assignment-card {
+            background: white;
+            border: 2px solid var(--border-gray);
+            padding: 1.8rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--teal);
+        }
+
+        .assignment-card:hover {
+            box-shadow: 0 4px 8px rgba(42, 157, 143, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .assignment-card h4 {
+            color: var(--teal);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .assignment-card .why-title,
+        .assignment-card .link-title {
+            color: var(--teal);
+            font-weight: 700;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bibliography-item {
+            background: var(--light-gray);
+            padding: 1.8rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--green);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-gray);
+            border-left: 4px solid var(--green);
+        }
+
+        .bibliography-item .citation {
+            font-style: italic;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .bibliography-item .summary-title,
+        .bibliography-item .significance-title {
+            color: var(--teal);
+            font-weight: 700;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .landing-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .profile-photo img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                flex-wrap: wrap;
+            }
+
+            nav button {
+                flex: 1 0 50%;
+                padding: 0.8rem;
+            }
+
+            .introduction {
+                text-align: center;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        footer {
+            background: white;
+            padding: 2rem;
+            text-align: center;
+            color: var(--dark-text);
+            margin-top: 3rem;
+            border-top: 4px solid var(--teal);
+            font-weight: 500;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-title" onclick="navigateTo('home')">
+                <h1>Jisoo's Portfolio</h1>
+            </div>
+            <div class="header-nav">
+                <a onclick="navigateTo('children')">Work with Children</a>
+                <a onclick="navigateTo('academic')">Academic Work</a>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" data-tab="home">Home</button>
+        <button class="nav-btn" data-tab="children">Work with Children</button>
+        <button class="nav-btn" data-tab="academic">Academic Work</button>
+    </nav>
+
+    <div class="container">
+        <!-- Home Tab -->
+        <div id="home" class="tab-content active">
+            <div class="landing-page">
+                <div class="landing-content">
+                    <div class="profile-photo">
+                        <img src="assets/Profile photo.jpg" alt="Jisoo Lee">
+                    </div>
+                    <div class="introduction">
+                        <h2>Welcome to My Professional Portfolio</h2>
+                        <p>Welcome to my professional teaching portfolio. I am a dedicated 3rd-year Early Childhood Studies student at Toronto Metropolitan University and a Registered Early Childhood Educator (RECE) with three years of practical experience. My pedagogical approach is rooted in fostering inclusive, inquiry-based environments where children's natural curiosity and social-emotional growth are prioritized.</p>
+                        <p>I believe in the power of intentional observation and adaptive communication to support the unique developmental journey of every child. Explore this portfolio to see my professional journey, academic achievements, and my commitment to high-quality early childhood education.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Philosophy and Goals</h2>
+
+                <h3>Statement of Philosophy</h3>
+                <div class="philosophy-box">
+                    <p>I am committed to inclusive education by creating a responsive environment where every child's unique developmental needs and cultural backgrounds are valued. I believe that a truly inclusive space is built on the foundation of equitable access, where materials are intentionally selected to meet each child at their current stage of development.</p>
+                    <p>For instance, during sensory-based activities, I provide a diverse range of adaptive tools such as varying sizes of grasps, textured brushes, and height-adjustable surfaces to ensure that the curriculum supports all levels of physical and fine motor development. I ensure that all children, regardless of their individual abilities, can fully participate, exercise their agency, and feel a deep sense of belonging.</p>
+                </div>
+
+                <h3>Goals for This Year/Placement</h3>
+                <div class="goals-list">
+                    <div class="goal-card">
+                        <h4>Goal 1</h4>
+                        <p>To implement diverse learning plans that utilize open-ended materials to support children's fine motor and cognitive development.</p>
+                    </div>
+                    <div class="goal-card">
+                        <h4>Goal 2</h4>
+                        <p>To strengthen my pedagogical documentation skills by capturing meaningful observations that reflect children's individual interests and growth.</p>
+                    </div>
+                    <div class="goal-card">
+                        <h4>Goal 3</h4>
+                        <p>To build trust-based, professional relationships with families through consistent and empathetic communication regarding their child's daily experiences.</p>
+                    </div>
+                </div>
+
+                <h3>Future Goals</h3>
+                <div class="goals-list">
+                    <div class="goal-card">
+                        <h4>Goal 1</h4>
+                        <p>To lead larger group transitions and classroom routines with confidence while maintaining a calm and supportive emotional climate.</p>
+                    </div>
+                    <div class="goal-card">
+                        <h4>Goal 2</h4>
+                        <p>To integrate more community-focused resources and social justice perspectives into the curriculum to promote equity in the classroom.</p>
+                    </div>
+                    <div class="goal-card">
+                        <h4>Goal 3</h4>
+                        <p>To continuously evolve as an educator by attending professional workshops on neurodiversity and advanced inclusive teaching practices.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Professional and Personal Data</h2>
+
+                <div class="data-section">
+                    <h3>Professional Credentials</h3>
+                    <ul class="credentials-list">
+                        <li>Registered Early Childhood Educator (RECE)</li>
+                        <li>Standard First Aid & CPR Level C</li>
+                    </ul>
+                </div>
+
+                <div class="music-section">
+                    <h3>Musical Engagement: Piano and Violin</h3>
+                    <p>As a musician proficient in both piano and violin, I integrate the power of music into my pedagogical practice to enhance children's learning experiences. During my current placement at the Centennial Infant and Child Centre (CICC), I actively utilized live piano performances to facilitate transitions and group engagement.</p>
+
+                    <div class="impact-list">
+                        <div class="impact-item">
+                            <h4>Emotional Regulation</h4>
+                            <p>My live music sessions provided a calming environment, helping children regulate their emotions and focus during quiet times.</p>
+                        </div>
+                        <div class="impact-item">
+                            <h4>Social Connection</h4>
+                            <p>Music acted as a universal language at CICC, creating a shared space where children could engage, dance, and communicate through rhythm and sound.</p>
+                        </div>
+                        <div class="impact-item">
+                            <h4>Auditory Development</h4>
+                            <p>By introducing real instruments, I encouraged children to explore pitch, tempo, and vibrations, sparking their natural curiosity about the world of arts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Work with Children Tab -->
+        <div id="children" class="tab-content">
+            <div class="section">
+                <h2>Work with Children and Families</h2>
+
+                <div class="activities-grid">
+                    <!-- Activity 1 -->
+                    <div class="activity-card">
+                        <div class="activity-gallery">
+                            <div class="gallery-container" style="transform: translateX(0%)">
+                                <img src="assets/Spaghetti 1.jpg" alt="Spaghetti Activity" class="gallery-image">
+                                <img src="assets/Spaghetti 2.jpg" alt="Spaghetti Activity" class="gallery-image">
+                            </div>
+                            <button class="gallery-nav prev" onclick="prevImage(this)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="nextImage(this)">&#10095;</button>
+                            <div class="gallery-controls">
+                                <span class="gallery-dot active" onclick="goToImage(this, 0)"></span>
+                                <span class="gallery-dot" onclick="goToImage(this, 1)"></span>
+                            </div>
+                        </div>
+                        <div class="activity-body">
+                            <h4>Spaghetti and Meat/Veggie Balls</h4>
+                            <div class="activity-meta">
+                                <span class="meta-tag">Dramatic Play</span>
+                                <span class="meta-tag">Sensory</span>
+                                <span class="meta-tag">Preschool</span>
+                            </div>
+                            <p><strong>Summary:</strong> In this dramatic play experience, children used textured materials - such as yarn for spaghetti and molded clay or wool for "meat/veggie" balls - to simulate a cooking environment. I provided various kitchen tools (tongs, strainers, and pots) to encourage role-playing and collaborative storytelling.</p>
+                            <p><strong>Pedagogical Value:</strong> This activity supports symbolic thinking and fine motor coordination as children manipulate different textures and tools. It also promotes social-emotional development through cooperative play, as children negotiate roles and share cultural perspectives on food and family traditions.</p>
+                        </div>
+                    </div>
+
+                    <!-- Activity 2 -->
+                    <div class="activity-card">
+                        <div class="activity-gallery">
+                            <div class="gallery-container" style="transform: translateX(0%)">
+                                <img src="assets/Liquid Rainbows 1.jpg" alt="Liquid Rainbows Activity" class="gallery-image">
+                                <img src="assets/Liquid Rainbows 2.jpg" alt="Liquid Rainbows Activity" class="gallery-image">
+                            </div>
+                            <button class="gallery-nav prev" onclick="prevImage(this)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="nextImage(this)">&#10095;</button>
+                            <div class="gallery-controls">
+                                <span class="gallery-dot active" onclick="goToImage(this, 0)"></span>
+                                <span class="gallery-dot" onclick="goToImage(this, 1)"></span>
+                            </div>
+                        </div>
+                        <div class="activity-body">
+                            <h4>Mixing Colours with Eye Droppers</h4>
+                            <div class="activity-meta">
+                                <span class="meta-tag">Science</span>
+                                <span class="meta-tag">Inquiry</span>
+                                <span class="meta-tag">Preschool</span>
+                            </div>
+                            <p><strong>Summary:</strong> Using primary-colored water and precision eye droppers, children explored the scientific process of color transformation. I facilitated this inquiry-based activity by asking open-ended questions, allowing children to predict and observe what happens when colors merge in transparent trays.</p>
+                            <p><strong>Pedagogical Value:</strong> This exploration focuses on cognitive development through the understanding of cause and effect. Additionally, the repetitive use of eye droppers strengthens the pincer grasp and hand-eye coordination, essential for early writing and literacy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Academic Work Tab -->
+        <div id="academic" class="tab-content">
+            <div class="section">
+                <h2>Related Academic Work</h2>
+
+                <h3>Significant Assignments</h3>
+
+                <div class="assignment-card">
+                    <h4>1. Interview Assignment: Individual Program Plans (IPP) at CICC</h4>
+                    <div class="why-title">Why I Chose This:</div>
+                    <p>"I selected this assignment because it provided a deep dive into the specialized assessment and planning processes used at a therapeutic nursery school. It highlights my understanding of how individualized support differs between separate agencies and public school boards."</p>
+                    <div class="link-title">Link to Practice:</div>
+                    <p>"Conducting this interview directly informed my practice at CICC by helping me understand that behaviors are often rooted in regulatory challenges. This knowledge allowed me to contribute to the 'living' nature of IPPs through detailed weekly observations and collaborative strategies with specialists."</p>
+                </div>
+
+                <div class="assignment-card">
+                    <h4>2. Literacy to Literacies: A Personal and Critical Reflection</h4>
+                    <div class="why-title">Why I Chose This:</div>
+                    <p>"This paper demonstrates my ability to critically analyze literacy as a social and cultural practice rather than just a technical skill. It reflects my commitment to valuing the diverse linguistic backgrounds and multimodalities that children bring from home."</p>
+                    <div class="link-title">Link to Practice:</div>
+                    <p>"This assignment translates to my practice through the use of inclusive storytelling, music, and movement to support children's expression. It guided me to view being multilingual as a strength and to foster environments where home languages are celebrated."</p>
+                </div>
+
+                <div class="assignment-card">
+                    <h4>3. Field Education Reflection: Family Engagement (Short Paper 3)</h4>
+                    <div class="why-title">Why I Chose This:</div>
+                    <p>"I chose this reflection as it highlights my professional growth in building responsive relationships with families within a clinical setting. It showcases my awareness of professional boundaries and the importance of sensitive communication."</p>
+                    <div class="link-title">Link to Practice:</div>
+                    <p>"This work directly links to my daily interactions at CICC, where I prioritized creating a welcoming atmosphere during drop-offs and shared meaningful, joy-filled updates at pickup. It reflects my learning on how to navigate complex developmental observations through collaboration with my Field Educator."</p>
+                </div>
+
+                <h3>Annotated Bibliography</h3>
+
+                <div class="bibliography-item">
+                    <div class="citation">Ontario. Ministry Of Children And Youth Services. Best Start Expert Panel On Early Learning. (2007). Early learning for every child today: a framework for Ontario early childhood settings. Ministry Of Children And Youth Services.</div>
+                    <div class="summary-title">Summary:</div>
+                    <p>This framework (ELECT) outlines the six principles of early learning and provides a comprehensive guide to children's development across social, emotional, communication, cognitive, and physical domains.</p>
+                    <div class="significance-title">Significance:</div>
+                    <p>I utilized the ELECT developmental continuum during my placement at CICC to accurately observe children's milestones and plan inclusive activities that support their individual growth stages.</p>
+                </div>
+
+                <div class="bibliography-item">
+                    <div class="citation">Ontario. Ministry Of Education. (2014). An introduction to how does learning happen? Ontario's pedagogy for the early years: For leaders. Ministry of Education.</div>
+                    <div class="summary-title">Summary:</div>
+                    <p>This pedagogical document introduces the four foundations of learning - Belonging, Well-being, Engagement, and Expression - to guide program development and professional practice in Ontario.</p>
+                    <div class="significance-title">Significance:</div>
+                    <p>This resource informed my approach to building responsive relationships and creating an environment where every child feels they belong, particularly during my musical engagements and sensory play sessions.</p>
+                </div>
+
+                <div class="bibliography-item">
+                    <div class="citation">Lightfoot, E., Hollie, K., Dangle, P., & Goto, K. (2024). Supporting parents with disabilities: A user-friendly guide for social service providers. School of Social Work, Arizona State University.</div>
+                    <div class="summary-title">Summary:</div>
+                    <p>This guide provides service providers with essential strategies and frameworks to offer equitable, family-centered support for parents living with various disabilities.</p>
+                    <div class="significance-title">Significance:</div>
+                    <p>This document was crucial during my CICC placement for understanding how to support families with diverse needs, ensuring that my communication and collaboration on Individual Program Plans (IPPs) were respectful and inclusive of parental agency.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Jisoo Lee • Teaching Portfolio • Toronto Metropolitan University</p>
+    </footer>
+
+    <script>
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        function navigateTo(tabName) {
+            // Remove active class from all buttons and tabs
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            // Add active class to the tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Update active button
+            const button = document.querySelector(`[data-tab="${tabName}"]`);
+            if (button) {
+                button.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabName = button.getAttribute('data-tab');
+                navigateTo(tabName);
+            });
+        });
+
+        // Gallery functions
+        function nextImage(button) {
+            const gallery = button.closest('.activity-gallery');
+            const container = gallery.querySelector('.gallery-container');
+            const images = gallery.querySelectorAll('.gallery-image');
+            const dots = gallery.querySelectorAll('.gallery-dot');
+            
+            const currentIndex = Array.from(container.style.transform.match(/\-?\d+/g) || ['0']).pop() / -100;
+            const nextIndex = (currentIndex + 1) % images.length;
+            
+            container.style.transform = `translateX(${nextIndex * -100}%)`;
+            
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[nextIndex].classList.add('active');
+        }
+
+        function prevImage(button) {
+            const gallery = button.closest('.activity-gallery');
+            const container = gallery.querySelector('.gallery-container');
+            const images = gallery.querySelectorAll('.gallery-image');
+            const dots = gallery.querySelectorAll('.gallery-dot');
+            
+            const currentIndex = Array.from(container.style.transform.match(/\-?\d+/g) || ['0']).pop() / -100;
+            const prevIndex = (currentIndex - 1 + images.length) % images.length;
+            
+            container.style.transform = `translateX(${prevIndex * -100}%)`;
+            
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[prevIndex].classList.add('active');
+        }
+
+        function goToImage(dot, imageIndex) {
+            const gallery = dot.closest('.activity-gallery');
+            const container = gallery.querySelector('.gallery-container');
+            const dots = gallery.querySelectorAll('.gallery-dot');
+            
+            container.style.transform = `translateX(${imageIndex * -100}%)`;
+            
+            dots.forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+        }
+    </script>
+</body>
+</html>
